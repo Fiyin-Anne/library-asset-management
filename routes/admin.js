@@ -8,11 +8,11 @@ router.post('/login', (req, res) => {
   .exec()
   .then(user => {
     if(user.length < 1) {
-      return res.status(401).json({message: 'Auth failed'});
+      return res.status(401).json({message: 'Access not granted.'});
     } 
     bcrypt.compare(req.body.password, user[0].password, (err, result) => {
       if(err) {
-        return res.status(401).json({message: 'Auth failed'});
+        return res.status(401).json({message: 'Access not granted'});
       }
       if(result && user[0].role === "Admin") {
         return res.status(200).json({message: 'Access granted!'});

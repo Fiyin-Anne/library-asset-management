@@ -30,7 +30,7 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', (req, res) => {
-    res.json({message: 'Hello World!!'});
+    res.json({message: 'Welcome to the Library.'});
 });
 
 app.use('/', router);
