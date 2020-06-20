@@ -17,18 +17,20 @@ router.post("/signup", (req, res, next) => {
   User.find({email: req.body.email }).exec()
   .then(user => {
     if (user.length >= 1) {
-      return res.status(409).json({message: 'user already exists.'})
+      res.status(409).json({message: 'user already exists.'})
     } else {
       bcrypt.hash(req.body.password, 12, (err, hashPassword) => {
         if(err) {
-          return res.status(500).json({
+           res.status(500).json({
             error:err
           }); 
         } else {
           const newUser = new User({
             _id: mongoose.Types.ObjectId(),
             email: req.body.email,
-            password: hashPassword
+            password: hashPassword,
+            role: req.body.role
+            //role: "Basic" //sets every user to basic role
         })
       newUser.save()
         .then(result => {
@@ -43,7 +45,7 @@ router.post("/signup", (req, res, next) => {
       });
     }
   });
-   next();
+   //next();
 });
 
 router.post("/login", (req, res, next) => {
@@ -61,7 +63,7 @@ router.post("/login", (req, res, next) => {
       if(result) {
         return res.status(200).json({message: 'Auth successful!'});
       }
-      res.status(401).json({message: 'Auth failed'});
+      return res.status(401).json({message: 'Auth failed'});
     })
     
   })
@@ -70,7 +72,7 @@ router.post("/login", (req, res, next) => {
       error:err
     });
   });
-  next()
+  //next()
 });
 
 

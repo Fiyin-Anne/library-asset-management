@@ -39,7 +39,7 @@ app.use('/', router);
 const userRoutes = require('./routes/user')
 const adminRoutes = require('./routes/admin')
 app.use('/admin', adminRoutes);
-app.use('/user', userRoutes);
+app.use('/', userRoutes);
 
 
 
