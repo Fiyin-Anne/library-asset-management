@@ -2,19 +2,20 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const router = express.Router();
-
+const cors = require('cors');
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(cors());
 
 const port = process.env.PORT || 3000;
 
 //connect db
 const mongoose = require('mongoose');
 const mongoDB = 'mongodb://127.0.0.1/LAMS';
-//mongoose.connect(mongoDB, { useNewUrlParser: true });
+
 mongoose.connect(mongoDB, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
 //Get the default connection
 var db = mongoose.connection;

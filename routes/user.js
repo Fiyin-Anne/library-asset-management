@@ -49,6 +49,7 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.post("/login", (req, res, next) => {
+  console.log("This is the log in page.");
   User.find({email: req.body.email })
   .exec()
   .then(user => {
