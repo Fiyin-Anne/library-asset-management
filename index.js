@@ -2,21 +2,20 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const router = express.Router();
-const cors = require('cors');
+const pingmydyno = require('pingmydyno');
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(cors());
 
 const port = process.env.PORT || 3000;
 
 //connect db
 const mongoose = require('mongoose');
 const mongoDB = 'mongodb://127.0.0.1/LAMS';
-
-mongoose.connect(mongoDB, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
+//mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || mongoDB, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
 //Get the default connection
 var db = mongoose.connection;
 
@@ -45,5 +44,6 @@ app.use('/', userRoutes);
 
 
 app.listen(port, (error) => {
-    console.log(`Listening on Port ${port}...`)
+    console.log(`Listening on Port ${port}...`);
+    pingmydyno('https://library-management-api-project.herokuapp.com/');
     })

@@ -1,5 +1,3 @@
 #ignore all files in node_modules
 
-node_modules/*
-
-!node_modules/mongoose/.dist
+node_modules/
