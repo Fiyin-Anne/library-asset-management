@@ -14,8 +14,9 @@ const port = process.env.PORT || 3000;
 //connect db
 const mongoose = require('mongoose');
 const mongoDB = 'mongodb://127.0.0.1/LAMS';
-//mongoose.connect(mongoDB, { useNewUrlParser: true });
-mongoose.connect(process.env.MONGODB_URI || mongoDB, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
+//const MONGODB_URI = 'mongodb://heroku_fmsbbgjl:hu01n0991h4rph3rjjkm339e8p@ds263642.mlab.com:63642/heroku_fmsbbgjl';
+
+mongoose.connect(mongoDB, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
 //Get the default connection
 var db = mongoose.connection;
 
@@ -43,7 +44,7 @@ app.use('/', userRoutes);
 
 
 
-app.listen(port, (error) => {
+app.listen(port, () => {
     console.log(`Listening on Port ${port}...`);
     pingmydyno('https://library-management-api-project.herokuapp.com/');
     })
