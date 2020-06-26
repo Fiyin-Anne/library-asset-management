@@ -6,8 +6,6 @@ const pingmydyno = require('pingmydyno');
 
 
 
-
-
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
