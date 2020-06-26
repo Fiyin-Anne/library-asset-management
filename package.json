@@ -26,8 +26,5 @@
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.19",
     "pingmydyno": "^1.5.1"
-  },
-  "engines": {
-    "node": "13.11.0"
   }
 }
