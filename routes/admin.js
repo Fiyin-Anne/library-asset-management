@@ -14,8 +14,10 @@ router.post('/login', (req, res) => {
       if(err) {
         return res.status(401).json({message: 'Access not granted'});
       }
-      if(result && user[0].role === "Admin") {
-        return res.status(200).json({message: 'Access granted!'});
+      if(result && user[0].role === "Admin" || "admin") {
+        return res.status(200).json({
+          message: 'Welcome Admin.',
+          name: req.body.email});
       }
       return res.status(401).json({message: 'Access not granted'});
     })

@@ -1,0 +1,28 @@
+POST http://localhost:3000/signup 
+content-type: application/json
+
+{
+    "email": "fiyinB@email.com",
+    "password": "fiyin2"
+}
+
+###
+
+POST http://localhost:3000/login 
+content-type: application/json
+
+{
+    "email": "fiyin@email.com",
+    "password": "fiyin2",
+    "role": "admin"
+}
+
+###
+POST http://localhost:3000/admin/login 
+content-type: application/json
+
+{
+    "email": "fiyin@email.com",
+    "password": "fiyin2",
+    "role": "admin"
+}

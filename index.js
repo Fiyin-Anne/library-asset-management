@@ -6,7 +6,6 @@ const pingmydyno = require('pingmydyno');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv'); 
 const cors = require('cors');
-
 const port = process.env.PORT || 3000;
 
 app.use(cors());
@@ -49,6 +48,5 @@ app.use('/', userRoutes);
 
 app.listen(port, () => {
     console.log(`Listening on Port ${port}...`);
-    console.log('Connection url => ', process.env.MONGODB_URI);
     pingmydyno('https://library-management-api-project.herokuapp.com/');
     })

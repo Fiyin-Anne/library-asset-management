@@ -3,14 +3,8 @@ const mongoose = require('mongoose');
 //const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
-router.get('/signin', (req, res) => {
-    res.send({
-        message: 'This is the signin page.'
-    });
-});
 
 //check if the email being registered already exixts
 router.post("/signup", (req, res, next) => {
@@ -30,16 +24,20 @@ router.post("/signup", (req, res, next) => {
             email: req.body.email,
             password: hashPassword,
             role: req.body.role
-            //role: "Basic" //sets every user to basic role
         })
+        //User.role.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase())
       newUser.save()
         .then(result => {
           console.log(result)
-          res.status(201).json({message: 'User Created!'})
+          res.status(201).json({
+            message: 'User Created!',
+            id: req.body._id,
+            user: req.body.email,
+            role: req.body.role
+            })
         })
         .catch(err => {
-          console.log(err);
-          res.status(500).json({error: err})
+          res.status(500).json({error: err.message})
         });
       }
       });
@@ -49,22 +47,29 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.post("/login", (req, res, next) => {
-  console.log("This is the log in page.")
-  User.find({email: req.body.email })
+  User.findOne({email: req.body.email })
   .exec()
   .then(user => {
     if(user.length < 1) {
-      return res.status(401).json({message: 'Auth failed'}); //so hackers cant easily figure out which the incorrect entry
-    } 
-    //compare hashed password with entered password
-    bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+      return res.status(401).json({message: 'Auth failed'});
+    }
+    bcrypt.compare(req.body.password, user.password, (err, result) => {
       if(err) {
         return res.status(401).json({message: 'Auth failed'});
       }
       if(result) {
-        return res.status(200).json({message: 'Auth successful!'});
+        const token = jwt.sign({
+          email: user.email,
+          userId: user._id
+        }, 
+        process.env.TOKEN_SECRET,
+        { expiresIn: '1h' }
+        );
+        return res.status(200).json({
+          name: user.email,
+          token: token});
       }
-      return res.status(401).json({message: 'Auth failed'});
+      return res.status(401).json({message: 'failed'});
     })
     
   })
