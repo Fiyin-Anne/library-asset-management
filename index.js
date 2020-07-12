@@ -7,7 +7,6 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv'); 
 const cors = require('cors');
 const port = process.env.PORT || 3000;
-
 app.use(cors());
 
 
@@ -36,13 +35,16 @@ router.get('/', (req, res) => {
     res.json({message: 'Welcome to the Library.'});
 });
 
+
 app.use('/', router);
 
 // other routes
 const userRoutes = require('./routes/user')
 const adminRoutes = require('./routes/admin')
+const bookRoutes = require('./routes/book')
 app.use('/admin', adminRoutes);
 app.use('/', userRoutes);
+app.use('/', bookRoutes)
 
 
 

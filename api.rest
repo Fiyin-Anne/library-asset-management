@@ -1,28 +1,42 @@
+POST http://localhost:3000/admin/login
+content-type: application/json
+
+{
+    "email": "fiyin@email.com",
+    "password": "fiyin2"
+}
+###
 POST http://localhost:3000/signup 
 content-type: application/json
 
 {
     "email": "fiyinB@email.com",
-    "password": "fiyin2"
+    "password": "fiyinB"
 }
-
 ###
-
 POST http://localhost:3000/login 
 content-type: application/json
 
 {
-    "email": "fiyin@email.com",
-    "password": "fiyin2",
-    "role": "admin"
+    "email": "fiyinB@email.com",
+    "password": "fiyinB"
 }
 
 ###
-POST http://localhost:3000/admin/login 
+POST http://localhost:3000/admin/addBook 
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZpeWluQGVtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsInVzZXJJZCI6IjVmMGEyZDFmOWYzMmI3MzRjODU0NTFjZiIsImlhdCI6MTU5NDUwODA5NywiZXhwIjoxNTk0NTExNjk3fQ.RT-IdUsFpJ3_ehFkTsTTSt6Pq7Z2mZHfjMSUVyVm0Zc
 
 {
-    "email": "fiyin@email.com",
-    "password": "fiyin2",
-    "role": "admin"
+    "title": "Winner7",
+    "author": "Emma Jaques",
+    "category": "Self-help",
+    "shelf": 1,
+    "numAvailable": 25
+
 }
+
+###
+
+GET http://localhost:3000/books
+Content-Type: 'application/json

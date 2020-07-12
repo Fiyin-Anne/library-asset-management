@@ -12,7 +12,7 @@ const UserSchema = mongoose.Schema({
         required: true},
     role:  {
         type: String,
-        default: "Basic"
+        default: "basic"
     }
 });
 
