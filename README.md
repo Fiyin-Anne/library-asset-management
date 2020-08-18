@@ -1,7 +1,7 @@
 ## Library asset management
 A repository for a Library Asset Management API.
 
-The Library Asset Management System API automates the process of borrowing books from the library. `Users` can view books available, borrow and return books. `Admin users` can authorize and monitor books borrowed and returned.
+The Library Asset Management System API automates the process of borrowing books from the library. `Users` can view books available, borrow and return books. `Admin users` can authorize and monitor books borrowed and returned. This api is being developed with node JS, Mongodb and express JS.
 
 ### Links
 
