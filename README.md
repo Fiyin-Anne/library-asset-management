@@ -8,3 +8,10 @@ The Library Asset Management System API automates the process of borrowing books
 - Documentation: A detailed documentation of the api can be found here: https://documenter.getpostman.com/view/11752155/Szzn7cYe?version=latest
 
 - Heroku link:  https://library-management-api-project.herokuapp.com/
+
+### Technology used:
+
+- Node JS
+- MongoDB
+- Postman
+- Heroku
